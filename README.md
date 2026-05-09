@@ -32,9 +32,26 @@ library-api → Kafka → notification-service
 Main responsibilities:
 
 - Consume `LoanCreatedEvent` messages from Kafka
-- Simulate notification delivery
+- Simulate email notification delivery
 - Persist notification logs in an independent database
+- Process asynchronous event-driven workflows
 - Maintain loose coupling with the main API
+
+---
+
+## Event flow
+
+```text
+library-api
+    ↓
+Kafka topic (loan-events)
+    ↓
+notification-service consumer
+    ↓
+NotificationService
+    ↓
+notification_logs persistence
+```
 
 ---
 
@@ -77,25 +94,34 @@ Execute the SQL setup script manually in MySQL before starting the application.
 
 ## Project status
 
-🚧 Initial setup phase
+✅ Functional microservice implementation completed
 
 Currently implemented:
 
-- Spring Boot project initialization
-- Maven project configuration
-- Flyway configuration
-- Kafka consumer configuration
-- Local environment setup structure
-- Initial database schema migration
+- Kafka consumer integration
+- LoanCreatedEvent deserialization
+- Notification event processing workflow
+- Simulated email notification generation
+- Notification log persistence
+- Flyway database migrations
+- JPA persistence layer
+- Layered architecture implementation
+- Javadoc documentation
+- Git workflow with feature branches and Pull Requests
 
-Planned next steps:
+---
 
-- NotificationLog entity
-- Kafka consumer implementation
-- LoanCreatedEvent integration
-- Notification persistence
-- Service layer implementation
+## Future improvements
+
+Possible future extensions:
+
+- LoanUpdatedEvent support
+- LoanCancelledEvent support
+- Real email provider integration
 - Docker deployment
+- Integration testing
+- Retry and dead-letter queue strategies
+- Monitoring and observability
 
 ---
 
@@ -106,3 +132,4 @@ Planned next steps:
 - Event-driven communication using Apache Kafka
 - Independent database persistence
 - Git workflow based on main, develop and feature branches
+- Features developed in isolated branches and merged through Pull Requests
