@@ -1,0 +1,61 @@
+# ------------------------------------------
+# Microservice Name
+# ------------------------------------------
+
+spring.application.name=notification-service
+
+# ------------------------------------------
+# Microservice Version
+# ------------------------------------------
+
+app.version=1.0.0
+
+# ------------------------------------------
+# Microservice Developer
+# ------------------------------------------
+
+app.developer=Jabier Zurro Aduriz
+
+# ------------------------------------------
+# Server port configuration
+# ------------------------------------------
+
+server.port=8081
+
+# ------------------------------------------
+# MySQL Data Base configuration
+# ------------------------------------------
+
+spring.datasource.url=jdbc:mysql://localhost:3306/notification_db?useSSL=false&requireSSL=false&serverTimezone=UTC
+spring.datasource.username=CHANGE_ME
+spring.datasource.password=CHANGE_ME
+
+# ------------------------------------------
+# Flyway
+# ------------------------------------------
+
+spring.flyway.enabled=true
+spring.flyway.locations=classpath:db/migration
+spring.flyway.encoding=UTF-8
+
+# ------------------------------------------
+# JPA / Hibernate
+# ------------------------------------------
+
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.open-in-view=false
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# ------------------------------------------
+# Kafka
+# ------------------------------------------
+
+spring.kafka.bootstrap-servers=localhost:9092
+
+spring.kafka.consumer.group-id=notification-service
+spring.kafka.consumer.auto-offset-reset=earliest
+
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer
+
+spring.kafka.consumer.properties.spring.json.trusted.packages=*

@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS notification_db
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+CREATE USER IF NOT EXISTS 'CHANGE_ME'@'localhost' IDENTIFIED BY 'CHANGE_ME';
+
+GRANT ALL PRIVILEGES ON notification_db.* TO 'CHANGE_ME'@'localhost';
+
+FLUSH PRIVILEGES;
