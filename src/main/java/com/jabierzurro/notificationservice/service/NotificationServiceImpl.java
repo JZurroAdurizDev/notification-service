@@ -9,6 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
+ * Service implementation responsible for processing notification events.
+ *
+ * <p>This service simulates email notification delivery and persists
+ * notification logs in the database.
  *
  * @author Jabier Zurro Aduriz
  */
@@ -19,6 +23,14 @@ public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationLogRepository notificationLogRepository;
 
+    /**
+     * Processes a loan creation event received from Kafka.
+     *
+     * <p>The method generates a simulated email message, stores the relevant
+     * notification data and persists a {@link NotificationLog} entry.
+     *
+     * @param event loan creation event received from Kafka
+     */
     @Override
     public void processLoanCreatedEvent(LoanCreatedEvent event) {
 
@@ -41,7 +53,13 @@ public class NotificationServiceImpl implements NotificationService {
 
         notificationLogRepository.save(notificationLog);
     }
-    
+
+    /**
+     * Builds the simulated email message for a loan creation event.
+     *
+     * @param event loan creation event
+     * @return formatted simulated email message
+     */
     private static String buildEmailMessage(LoanCreatedEvent event) {
         return String.format(
                 """

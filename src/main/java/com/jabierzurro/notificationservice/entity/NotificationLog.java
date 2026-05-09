@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
+ * Entity representing a persisted notification log.
+ *
+ * <p>Each record stores the result of a simulated notification generated
+ * after consuming a Kafka loan event.
  *
  * @author Jabier Zurro Aduriz
  */
