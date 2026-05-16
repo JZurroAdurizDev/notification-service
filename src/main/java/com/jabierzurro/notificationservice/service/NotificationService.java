@@ -18,7 +18,17 @@ public interface NotificationService {
      */
     void processLoanCreatedEvent(LoanCreatedEvent event);
 
-    void processLoanUpdatedEvent(LoanUpdatedEvent event);
+   /**
+    * Processes a loan update event and stores the generated notification log.
+    *
+    * @param event loan update event received from Kafka
+    */
+   void processLoanUpdatedEvent(LoanUpdatedEvent event);
 
-    void processLoanClosedEvent(LoanClosedEvent event);
+   /**
+    * Processes a loan closure event and stores the generated notification log.
+    *
+    * @param event loan closure event received from Kafka
+    */
+   void processLoanClosedEvent(LoanClosedEvent event);
 }

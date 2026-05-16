@@ -43,6 +43,11 @@ public class LoanEventConsumer {
         notificationService.processLoanCreatedEvent(event);
     }
     
+    /**
+     * Consumes loan update events published to Kafka.
+     *
+     * @param event loan update event received from Kafka
+     */
     @KafkaListener(
             topics = "loan-events",
             groupId = "notification-service"
@@ -57,6 +62,12 @@ public class LoanEventConsumer {
         notificationService.processLoanUpdatedEvent(event);
     }
     
+    
+    /**
+     * Consumes loan closure events published to Kafka.
+     *
+     * @param event loan closure event received from Kafka
+     */
     @KafkaListener(
             topics = "loan-events",
             groupId = "notification-service"

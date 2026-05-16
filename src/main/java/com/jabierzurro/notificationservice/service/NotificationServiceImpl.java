@@ -73,6 +73,14 @@ public class NotificationServiceImpl implements NotificationService {
         notificationLogRepository.save(notificationLog);
     }
 
+    /**
+     * Processes a loan update event received from Kafka.
+     *
+     * <p>The method generates a simulated email message, stores the relevant
+     * notification data and persists a {@link NotificationLog} entry.
+     *
+     * @param event loan update event received from Kafka
+     */
     @Override
     public void processLoanUpdatedEvent(LoanUpdatedEvent event) {
         String message = buildEmailMessage(
@@ -113,6 +121,14 @@ public class NotificationServiceImpl implements NotificationService {
         notificationLogRepository.save(notificationLog);
     }
 
+    /**
+     * Processes a loan closure event received from Kafka.
+     *
+     * <p>The method generates a simulated email message, stores the relevant
+     * notification data and persists a {@link NotificationLog} entry.
+     *
+     * @param event loan closure event received from Kafka
+     */
     @Override
     public void processLoanClosedEvent(LoanClosedEvent event) {
         String message = buildEmailMessage(
@@ -148,9 +164,10 @@ public class NotificationServiceImpl implements NotificationService {
     }
     
     /**
-     * Builds the simulated email message for a loan creation event.
+     * Builds a simulated email message.
      *
-     * @param event loan creation event
+     * @param userEmail recipient email address
+     * @param body email body content
      * @return formatted simulated email message
      */
     private static String buildEmailMessage(String userEmail, String body) {
