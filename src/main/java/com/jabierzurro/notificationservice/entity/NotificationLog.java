@@ -10,7 +10,8 @@ import lombok.Setter;
  * Entity representing a persisted notification log.
  *
  * <p>Each record stores the result of a simulated notification generated
- * after consuming a Kafka loan event.
+ * after consuming a loan-related Kafka event, such as loan creation,
+ * loan updates or loan closure.
  *
  * @author Jabier Zurro Aduriz
  */
@@ -36,6 +37,9 @@ public class NotificationLog {
 
     @Column(name = "book_titles", nullable = false, columnDefinition = "TEXT")
     private String bookTitles;
+    
+    @Column(name = "notification_type", nullable = false, length = 50)
+    private String notificationType;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;

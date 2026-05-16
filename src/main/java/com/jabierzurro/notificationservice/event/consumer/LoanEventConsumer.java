@@ -1,6 +1,8 @@
 package com.jabierzurro.notificationservice.event.consumer;
 
+import com.jabierzurro.notificationservice.event.dto.LoanClosedEvent;
 import com.jabierzurro.notificationservice.event.dto.LoanCreatedEvent;
+import com.jabierzurro.notificationservice.event.dto.LoanUpdatedEvent;
 import com.jabierzurro.notificationservice.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +41,44 @@ public class LoanEventConsumer {
         );
 
         notificationService.processLoanCreatedEvent(event);
+    }
+    
+    /**
+     * Consumes loan update events published to Kafka.
+     *
+     * @param event loan update event received from Kafka
+     */
+    @KafkaListener(
+            topics = "loan-events",
+            groupId = "notification-service"
+    )
+    public void consumeLoanUpdatedEvent(LoanUpdatedEvent event) {
+        
+        log.info(
+                "Received LoanUpdatedEvent for loanId={}",
+                event.loanId()
+        );
+        
+        notificationService.processLoanUpdatedEvent(event);
+    }
+    
+    
+    /**
+     * Consumes loan closure events published to Kafka.
+     *
+     * @param event loan closure event received from Kafka
+     */
+    @KafkaListener(
+            topics = "loan-events",
+            groupId = "notification-service"
+    )
+    public void consumeLoanClosedEvent(LoanClosedEvent event) {
+        
+        log.info(
+                "Received LoanClosedEvent for loanId={}",
+                event.loanId()
+        );
+        
+        notificationService.processLoanClosedEvent(event); 
     }
 }
