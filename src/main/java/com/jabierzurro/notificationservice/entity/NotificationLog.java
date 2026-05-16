@@ -36,6 +36,9 @@ public class NotificationLog {
 
     @Column(name = "book_titles", nullable = false, columnDefinition = "TEXT")
     private String bookTitles;
+    
+    @Column(name = "notification_type", nullable = false, length = 50)
+    private String notificationType;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;

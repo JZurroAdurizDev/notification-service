@@ -1,6 +1,8 @@
 package com.jabierzurro.notificationservice.service;
 
+import com.jabierzurro.notificationservice.event.dto.LoanClosedEvent;
 import com.jabierzurro.notificationservice.event.dto.LoanCreatedEvent;
+import com.jabierzurro.notificationservice.event.dto.LoanUpdatedEvent;
 
 /**
  * Service responsible for notification-related business operations.
@@ -15,4 +17,8 @@ public interface NotificationService {
      * @param event loan creation event received from Kafka
      */
     void processLoanCreatedEvent(LoanCreatedEvent event);
+
+    void processLoanUpdatedEvent(LoanUpdatedEvent event);
+
+    void processLoanClosedEvent(LoanClosedEvent event);
 }
