@@ -31,7 +31,11 @@ library-api → Kafka → notification-service
 
 Main responsibilities:
 
-- Consume `LoanCreatedEvent` messages from Kafka
+- Consume loan-related domain events from Kafka
+- Process:
+  - `LoanCreatedEvent`
+  - `LoanUpdatedEvent`
+  - `LoanClosedEvent`
 - Simulate email notification delivery
 - Persist notification logs in an independent database
 - Process asynchronous event-driven workflows
@@ -99,7 +103,10 @@ Execute the SQL setup script manually in MySQL before starting the application.
 Currently implemented:
 
 - Kafka consumer integration
-- LoanCreatedEvent deserialization
+- Kafka event deserialization
+- LoanCreatedEvent processing
+- LoanUpdatedEvent processing
+- LoanClosedEvent processing
 - Notification event processing workflow
 - Simulated email notification generation
 - Notification log persistence
@@ -111,17 +118,17 @@ Currently implemented:
 
 ---
 
-## Future improvements
+## Deployment
 
-Possible future extensions:
+The microservice is fully containerized using Docker Compose and integrated into the complete infrastructure stack.
 
-- LoanUpdatedEvent support
-- LoanCancelledEvent support
-- Real email provider integration
-- Docker deployment
-- Integration testing
-- Retry and dead-letter queue strategies
-- Monitoring and observability
+Current infrastructure includes:
+- Apache Kafka
+- Docker Compose
+- Independent MySQL database
+- Nginx reverse proxy integration
+- HTTPS communication
+- Environment-based configuration using `.env`
 
 ---
 
